@@ -4,6 +4,7 @@ namespace LaraZeus\MatrixChoice\Components;
 
 use Closure;
 use Filament\Forms\Components\CheckboxList;
+use Illuminate\Contracts\Support\Htmlable;
 
 class Matrix extends CheckboxList
 {
@@ -13,7 +14,7 @@ class Matrix extends CheckboxList
 
     protected array|Closure $rowData = [];
 
-    protected string $redOrBlue = 'radio';
+    protected string $inputType = 'radio';
 
     protected bool $rowSelectRequired = true;
 
@@ -61,21 +62,21 @@ class Matrix extends CheckboxList
         return $this->evaluate($this->rowData);
     }
 
-    public function getPilColor(): string
+    public function getInputType(): string
     {
-        return $this->evaluate($this->redOrBlue);
+        return $this->evaluate($this->inputType);
     }
 
     public function asRadio(): static
     {
-        $this->redOrBlue = 'radio';
+        $this->inputType = 'radio';
 
         return $this;
     }
 
     public function asCheckbox(): static
     {
-        $this->redOrBlue = 'checkbox';
+        $this->inputType = 'checkbox';
 
         return $this;
     }
